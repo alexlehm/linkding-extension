@@ -182,7 +182,7 @@ export class PopupForm extends LitElement {
       this.saveState = "loading";
 
       await this.api.saveBookmark(bookmark, {
-        disable_html_snapshot: this.extensionConfiguration?.runSinglefile && this.savePage,
+        disable_html_snapshot: this.extensionConfiguration?.runSinglefile || (this.extensionConfiguration?.runSinglefileToggleable && this.savePage),
       });
       await clearCachedServerMetadata();
 
@@ -392,6 +392,7 @@ export class PopupForm extends LitElement {
             <span>Mark as unread</span>
           </label>
           ${this.extensionConfiguration?.runSinglefile
+            && this.extensionConfiguration?.runSinglefileToggleable
             ? html`
               <label class="form-checkbox">
                 <input

@@ -12,6 +12,7 @@ export class Options extends LitElement {
     shareSelected: { type: Boolean, state: true },
     useBrowserMetadata: { type: Boolean, state: true },
     runSinglefile: { type: Boolean, state: true },
+    runSinglefileToggleable: { type: Boolean, state: false },
     precacheEnabled: { type: Boolean, state: true },
     closeAddBookmarkWindowOnSave: { type: Boolean, state: true },
     closeAddBookmarkWindowOnSaveMs: { type: Number, state: true },
@@ -55,6 +56,7 @@ export class Options extends LitElement {
     this.shareSelected = config.shareSelected;
     this.useBrowserMetadata = config.useBrowserMetadata;
     this.runSinglefile = config.runSinglefile;
+    this.runSinglefileToggleable = config.runSinglefileToggleable;
     this.precacheEnabled = config.precacheEnabled;
     this.closeAddBookmarkWindowOnSave = config.closeAddBookmarkWindowOnSave;
     this.closeAddBookmarkWindowOnSaveMs = config.closeAddBookmarkWindowOnSaveMs;
@@ -70,6 +72,7 @@ export class Options extends LitElement {
       shareSelected: this.shareSelected,
       useBrowserMetadata: this.useBrowserMetadata,
       runSinglefile: this.runSinglefile,
+      runSinglefileToggleable: this.runSinglefileToggleable,
       precacheEnabled: this.precacheEnabled,
       closeAddBookmarkWindowOnSave: this.closeAddBookmarkWindowOnSave,
       closeAddBookmarkWindowOnSaveMs: this.closeAddBookmarkWindowOnSaveMs,
@@ -231,6 +234,22 @@ export class Options extends LitElement {
               >documentation</a
             >
             for more information.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-checkbox">
+            <input
+              type="checkbox"
+              .checked="${this.runSinglefileToggleable}"
+              @change="${(e) => this.handleInputChange(e, "runSinglefileToggleable")}"
+            />
+            <i class="form-icon"></i>
+            <span>Singlefile Save is toggleable in the Bookmark popup</span>
+          </label>
+          <div class="form-input-hint">
+            Allows you to choose whether to run Singlefile when saving a new bookmark.
+            When enabled, the default is to Save, this can be unchecked per bookmark.
           </div>
         </div>
 
